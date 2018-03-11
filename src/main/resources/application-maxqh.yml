@@ -1,0 +1,22 @@
+#帅豪专用配置文件  在application.yml中指定 maxqh或者ang
+server:
+  port: 8082
+  servlet:
+    context-path: /mf
+
+#帅豪专用数据库配置文件  傻敷敷请在ang中另外配置
+spring:
+  datasource:
+    dbcp2:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://192.168.1.230:3307/wxgops
+      username: wxgops
+      password: wxgops_pwd
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+
+
+
