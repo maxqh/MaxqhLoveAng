@@ -10,7 +10,7 @@ import com.maxqh.biz.manager.utils.DateUtils;
 
 /**
  * @Author:qianhao
- * @Description:
+ * @Description: 纪念日
  * @Date:2018/3/11
  * @Version:1.0
  */
@@ -19,8 +19,7 @@ public class AnniversaryController {
     @GetMapping(value = "/days")
     public Integer days(){
         String gettingTogetherDayStr = EnumAnniversaries.MOM_DAD_GETTING_TOGETHER.getValue();
-        Date now = new Date();
-        String nowDateStr = DateUtils.getYmdDateString(now);
+        String nowDateStr = DateUtils.getYmdDateString(new Date());
 
         Integer days = Integer.valueOf(nowDateStr) - Integer.valueOf(gettingTogetherDayStr);
         return days;
