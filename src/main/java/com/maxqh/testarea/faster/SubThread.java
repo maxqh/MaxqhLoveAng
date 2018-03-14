@@ -9,16 +9,17 @@ import java.util.concurrent.atomic.AtomicLong;
  * @Version:1.0
  */
 public class SubThread extends Thread {
-    public static AtomicLong totalSum = new AtomicLong(0);
+    private AtomicLong totalSum;
 
     private static Integer taskNum = 0;
 
     private int start;
     private int end;
 
-    SubThread(int start, int end) {
+    SubThread(int start, int end, AtomicLong total) {
         this.start = start;
         this.end = end;
+        this.totalSum = total;
     }
 
     @Override

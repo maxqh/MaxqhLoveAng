@@ -6,6 +6,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * @Author:qianhao
@@ -64,6 +65,7 @@ public class DadYouSoGood {
         // 2:ForkJoinPool异步提交
         Long startTime = System.currentTimeMillis();
         ForkJoinPool forkJoinPool = new ForkJoinPool();
+
         // 提交可分解的PrintTask任务
         Future<Long> future = forkJoinPool.submit(new SubTask(0, TOTOAL_NUM));
         Long total = future.get();
@@ -97,20 +99,21 @@ public class DadYouSoGood {
     public static void methodD() throws Exception {
         Long startTime = System.currentTimeMillis();
 
+        AtomicLong total = new AtomicLong(0);
         int start = 0;
         int end = TOTOAL_NUM;
 
         // 分片
         // 1.1每次新增一个线程 并处理MAX_NUM个数据
         for (; (end - start) > MAX_NUM;) {
-            SubThread sub = new SubThread(start, start + MAX_NUM);
+            SubThread sub = new SubThread(start, start + MAX_NUM, total);
             start = start + MAX_NUM + 1;
             threadPool.submit(sub);
         }
 
         //1.2处理最终剩下的数据
         if (start < end) {
-            SubThread sub = new SubThread(start, end);
+            SubThread sub = new SubThread(start, end, total);
             threadPool.submit(sub);
         }
 
@@ -120,7 +123,7 @@ public class DadYouSoGood {
         while (true) {
             if (threadPool.isTerminated()) {
                 Long endTime = System.currentTimeMillis();
-                System.out.println(String.format("多线程计算： totalNum=[%s], and it costs[%s]ms", SubThread.totalSum,
+                System.out.println(String.format("多线程计算： totalNum=[%s], and it costs[%s]ms", total,
                         (endTime - startTime)));
                 break;
             }
