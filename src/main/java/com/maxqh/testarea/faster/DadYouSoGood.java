@@ -89,6 +89,11 @@ public class DadYouSoGood {
                 .println(String.format("多线程计算： total num=[%s], and it costs[%s]ms \n\r", total, (endTime - startTime)));
     }
 
+    /**
+     * 线程池异步提交
+     *
+     * @throws Exception
+     */
     public static void methodD() throws Exception {
         Long startTime = System.currentTimeMillis();
 
