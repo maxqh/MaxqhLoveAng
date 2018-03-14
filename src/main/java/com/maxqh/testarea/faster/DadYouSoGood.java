@@ -17,7 +17,7 @@ public class DadYouSoGood {
     /**
      * 一次最多处理的数据量
      */
-    public static final Integer MAX_NUM = 25000000;
+    public static final Integer MAX_NUM = 50000000;
 
     /**
      * 要运算总数
@@ -108,10 +108,9 @@ public class DadYouSoGood {
 
         threadPool.shutdown();
 
-        Long endTime;
         while (true) {
             if (threadPool.isTerminated()) {
-                endTime = System.currentTimeMillis();
+                Long endTime = System.currentTimeMillis();
                 System.out.println(String.format("多线程计算： totalNum=[%s], and it costs[%s]ms", SubThread.totalSum,
                         (endTime - startTime)));
                 break;
