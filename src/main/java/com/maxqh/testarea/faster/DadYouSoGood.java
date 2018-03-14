@@ -95,17 +95,21 @@ public class DadYouSoGood {
         int start = 0;
         int end = TOTOAL_NUM;
 
+        // 分片
+        // 1.1每次新增一个线程 并处理MAX_NUM个数据
         for (; (end - start) > MAX_NUM;) {
             SubThread sub = new SubThread(start, start + MAX_NUM);
             start = start + MAX_NUM + 1;
             threadPool.submit(sub);
         }
 
+        //1.2处理最终剩下的数据
         if (start < end) {
             SubThread sub = new SubThread(start, end);
             threadPool.submit(sub);
         }
 
+        //关闭线程  计算总耗时
         threadPool.shutdown();
 
         while (true) {
