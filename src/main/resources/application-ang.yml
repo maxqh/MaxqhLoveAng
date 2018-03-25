@@ -4,5 +4,17 @@ server:
   servlet:
     context-path: /mf
 
+#帅豪20180325刚刚提交的   大美芳jdbc配置信息放这里
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/maxqh_love_ang
+    password: maxqhloveang
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
 
 
