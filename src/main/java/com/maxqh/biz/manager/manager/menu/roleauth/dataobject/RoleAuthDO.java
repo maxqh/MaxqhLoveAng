@@ -1,4 +1,4 @@
-package com.maxqh.biz.dal.menu;
+package com.maxqh.biz.manager.manager.menu.roleauth.dataobject;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,4 +1,4 @@
-package com.maxqh.biz.dal.menu;
+package com.maxqh.biz.manager.manager.menu.menu.dataobject;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,33 +12,38 @@ import javax.persistence.Table;
  * @Date:2018/4/20
  * @Version:1.0
  */
-@Entity(name = "Auth")
-@Table(name = "tb_auth")
-public class AuthDO {
+@Entity(name = "Menu")
+@Table(name = "tb_admin_menu")
+public class MenuDO {
     /**
      * id
      */
     @Id
     @GeneratedValue
+    @Column(name = "id", nullable = false)
     private Integer id;
+
     /**
-     * 功能名称
+     * 菜单名称
      */
     @Column(name = "name", nullable = false)
     private String name;
     /**
-     * 功能链接
+     * 菜单链接
      */
-    @Column(name = "action", nullable = false)
+    @Column(name = "url", nullable = false)
     private String url;
 
     @Column(name = "sequence", nullable = false)
     private Integer sequence;
 
-    @Column(name = "category", nullable = false)
-    private String category;
+    @Column(name = "parent_id", nullable = true)
+    private Integer parentId;
 
-    private Integer menu_id;
+    // @OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+    //
+    // @JoinColumn(name = "id", nullable = false)
+    // private List<AuthEntity> authEntities;
 
     public Integer getId() {
         return id;
@@ -56,22 +61,6 @@ public class AuthDO {
         this.name = name;
     }
 
-    public Integer getSequence() {
-        return sequence;
-    }
-
-    public void setSequence(Integer sequence) {
-        this.sequence = sequence;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
     public String getUrl() {
         return url;
     }
@@ -80,12 +69,19 @@ public class AuthDO {
         this.url = url;
     }
 
-    public Integer getMenu_id() {
-        return menu_id;
+    public Integer getParentId() {
+        return parentId;
     }
 
-    public void setMenu_id(Integer menu_id) {
-        this.menu_id = menu_id;
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 
+    public Integer getSequence() {
+        return sequence;
+    }
+
+    public void setSequence(Integer sequence) {
+        this.sequence = sequence;
+    }
 }

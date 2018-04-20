@@ -1,4 +1,4 @@
-package com.maxqh.biz.dal.menu;
+package com.maxqh.biz.manager.manager.menu.role.dataobject;
 
 import java.util.Set;
 
@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.maxqh.biz.manager.manager.menu.menu.dataobject.MenuDO;
 
 /**
  * @Author:qianhao
