@@ -25,7 +25,7 @@ public enum EnumUserStatus {
      * @param status
      * @return
      */
-    public EnumUserStatus getEmunByKey(Integer status){
+    public EnumUserStatus getEnumByKey(Integer status){
         if(status == null){
             return null;
         }
