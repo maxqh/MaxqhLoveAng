@@ -1,5 +1,7 @@
 package com.maxqh.biz.manager.manager.menu.menu.dataobject;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +16,7 @@ import javax.persistence.Table;
  */
 @Entity(name = "Menu")
 @Table(name = "tb_admin_menu")
-public class MenuDO {
+public class MenuDO implements Serializable{
     /**
      * id
      */
@@ -39,6 +41,9 @@ public class MenuDO {
 
     @Column(name = "parent_id", nullable = true)
     private Integer parentId;
+
+    @Column(name = "data_key", nullable = false)
+    private String dataKey;
 
     // @OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
     //
@@ -83,5 +88,13 @@ public class MenuDO {
 
     public void setSequence(Integer sequence) {
         this.sequence = sequence;
+    }
+
+    public String getDataKey() {
+        return dataKey;
+    }
+
+    public void setDataKey(String dataKey) {
+        this.dataKey = dataKey;
     }
 }
