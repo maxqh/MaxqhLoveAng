@@ -57,6 +57,20 @@ public class MinimumTotal {
         }
 
         return min;
+
+        /*
+         * 聚聚的方案 5ms 成功
+         * 
+         * int[] dj = new int[triangle.get(triangle.size() - 1).size()]; int n =
+         * triangle.size();
+         * 
+         * for (int i = 0; i < triangle.get(triangle.size() - 1).size(); i++) {
+         * dj[i] = triangle.get(triangle.size() - 1).get(i); }
+         * 
+         * for (int i = n - 2; i >= 0; i--) { // 从最后第二行开始算 for (int j = 0; j <
+         * triangle.get(i).size(); j++) { dj[j] = triangle.get(i).get(j) +
+         * Math.min(dj[j], dj[j + 1]); } } return dj[0];
+         */
     }
 
     public static void main(String[] args) {
