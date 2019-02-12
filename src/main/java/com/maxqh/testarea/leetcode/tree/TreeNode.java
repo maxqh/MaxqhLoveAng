@@ -1,4 +1,4 @@
-package com.maxqh.testarea.leetcode.bst;
+package com.maxqh.testarea.leetcode.tree;
 
 /**
  * @Author:qianhao
