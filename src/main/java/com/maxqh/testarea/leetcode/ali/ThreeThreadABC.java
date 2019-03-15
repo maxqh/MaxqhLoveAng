@@ -1,6 +1,5 @@
 package com.maxqh.testarea.leetcode.ali;
 
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -12,11 +11,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class ThreeThreadABC {
     /**
      * 计数总数
-     */
+     *//*
     private static AtomicInteger totalNum = new AtomicInteger(1);
-    /**
+    *//**
      * 是否该A打印
-     */
+     *//*
     private static AtomicBoolean isATrun = new AtomicBoolean(Boolean.TRUE);
 
     public static void main(String[] args) {
@@ -83,5 +82,90 @@ public class ThreeThreadABC {
         a.start();
         b.start();
         c.start();
+    }*/
+
+    private static AtomicInteger totalCountNum = new AtomicInteger(1);
+    private static AtomicInteger abCountNum = new AtomicInteger(0);
+
+    public static void main(String[] args){
+
+        Thread threadA = new Thread(new Runnable(){
+            @Override
+            public void run(){
+                for(;;){
+                    int totalTemp = totalCountNum.get();
+                    int abTemp = abCountNum.get();
+
+                    // 结束校验
+                    if(isOver(totalTemp)){
+                        break;
+                    }
+
+                    if((totalTemp % 10 > 0) && ((abTemp % 2) == 0)){
+                        if(totalCountNum.compareAndSet(totalTemp, totalTemp + 1)){
+                            abCountNum.compareAndSet(abTemp, abTemp + 1);
+
+                            System.out.println("A线程输出. count:" + totalTemp);
+                        }
+                    }
+                }
+            }
+        });
+
+        Thread threadB = new Thread(new Runnable(){
+            @Override
+            public void run(){
+                for(;;){
+                    int totalTemp = totalCountNum.get();
+                    int abTemp = abCountNum.get();
+
+                    // 结束校验
+                    if(isOver(totalTemp)){
+                        break;
+                    }
+
+                    if((totalTemp % 10 > 0) && ((abTemp % 2) > 0)){
+                        if(totalCountNum.compareAndSet(totalTemp, totalTemp + 1)){
+                            abCountNum.compareAndSet(abTemp, abTemp + 1);
+
+                            System.out.println("B线程输出. count:" + totalTemp);
+                        }
+                    }
+                }
+            }
+        });
+
+        Thread threadC = new Thread(new Runnable(){
+            @Override
+            public void run(){
+                for(;;){
+                    int totalTemp = totalCountNum.get();
+
+                    // 结束校验
+                    if(isOver(totalTemp)){
+                        break;
+                    }
+
+                    if((totalTemp % 10 == 0)){
+                        if(totalCountNum.compareAndSet(totalTemp, totalTemp + 1)){
+
+                            System.out.println("C线程输出. count:" + totalTemp);
+                        }
+
+                    }
+                }
+            }
+        });
+
+        threadA.start();
+        threadB.start();
+        threadC.start();
+    }
+
+    /*
+     * 是否计时结束
+     */
+    public static boolean isOver(int count){
+        return count > 100;
     }
 }
