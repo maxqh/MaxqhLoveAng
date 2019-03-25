@@ -28,19 +28,19 @@ public class LevelOrder {
         }
 
         List<List<Integer>> result = new ArrayList<>();
-        List<Integer> subList = new ArrayList<>();
-        subList.add(root.val);
+        List<Integer> rootVal = new ArrayList<>();
+        rootVal.add(root.val);
 
-        result.add(subList);
-        List<List<Integer>> aa = maxqh(root.children);
-        if (aa != null && aa.size() > 0) {
-            result.addAll(aa);
+        result.add(rootVal);
+        List<List<Integer>> subList = levelOrderHelper(root.children);
+        if (subList != null && subList.size() > 0) {
+            result.addAll(subList);
         }
 
         return result;
     }
 
-    private List<List<Integer>> maxqh(List<MultiTreeNode> children) {
+    private List<List<Integer>> levelOrderHelper(List<MultiTreeNode> children) {
         if (children == null || children.size() < 1) {
             return null;
         }
@@ -64,7 +64,7 @@ public class LevelOrder {
         result.add(subList);
 
         if (childList.size() > 0) {
-            result.addAll(maxqh(childList));
+            result.addAll(levelOrderHelper(childList));
         }
 
         return result;
