@@ -1,4 +1,4 @@
-package com.maxqh.Controller;
+package com.maxqh.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
