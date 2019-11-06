@@ -4,7 +4,7 @@ package com.maxqh.testarea.leetcode.linkedlist;
  * HasCycle
  *
  * @Author:qianhao
- * @Description: 给定一个链表，判断链表中是否有环
+ * @Description: 给定一个链表，判断链表中是否有环  -->快慢指针
  * @Date:2019/5/29
  * @Version:1.0
  */
