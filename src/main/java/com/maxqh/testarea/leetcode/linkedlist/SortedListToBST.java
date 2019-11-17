@@ -1,5 +1,8 @@
 package com.maxqh.testarea.leetcode.linkedlist;
 
+
+import com.maxqh.testarea.leetcode.bst.TreeNode;
+
 /**
  * SortedListToBST
  *
