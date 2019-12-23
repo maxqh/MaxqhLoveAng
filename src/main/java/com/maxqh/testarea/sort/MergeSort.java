@@ -26,11 +26,7 @@ public class MergeSort {
 
         int k = param[start];
         Integer middle = start;
-        for (int i = middle; i <= end; i++) {
-            if (i == start) {
-                continue;
-            }
-
+        for (int i = middle + 1; i <= end; i++) {
             if (param[i] < k) {
                 int temp = param[i];
                 param[i] = param[middle];
