@@ -22,9 +22,10 @@ public class QuickSort {
     private static void helper(Integer start, Integer end, Integer[] param) {
         int k = param[start];
         Integer middle = start;
+        int temp;
         for (int i = middle + 1; i <= end; i++) {
             if (param[i] < k) {
-                int temp = param[i];
+                temp = param[i];
                 param[i] = param[middle];
                 param[middle] = temp;
 
