@@ -1,8 +1,5 @@
 package com.maxqh.testarea.leetcode.string;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * 给定两个字符串 s1 和 s2，写一个函数来判断 s2 是否包含 s1 的排列。
  * 
