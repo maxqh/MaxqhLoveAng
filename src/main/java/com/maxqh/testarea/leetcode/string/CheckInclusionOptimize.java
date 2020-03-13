@@ -23,7 +23,7 @@ public class CheckInclusionOptimize {
      *
      * 103 / 103 个通过测试用例 状态：通过 执行用时：6 ms 内存消耗：39 MB
      *
-     * 击败了92.42%
+     * 击败了92.43%
      * 
      * @param s1
      * @param s2
