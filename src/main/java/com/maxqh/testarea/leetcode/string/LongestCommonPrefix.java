@@ -55,10 +55,10 @@ public class LongestCommonPrefix {
             return commonPrefixResovler(strs[start], strs[end]);
         }
 
-        String a = commonPrefixResovler(strs, start, start + (minus + 1) / 2);
-        String b = commonPrefixResovler(strs, start + minus / 2 + 1, end);
+        String front = commonPrefixResovler(strs, start, start + (minus + 1) / 2);
+        String behind = commonPrefixResovler(strs, start + minus / 2 + 1, end);
 
-        return commonPrefixResovler(a, b);
+        return commonPrefixResovler(front, behind);
     }
 
     /**
