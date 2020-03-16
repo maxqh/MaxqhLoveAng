@@ -19,7 +19,7 @@ public class Multiply {
     /**
      * 通过
      *
-     * 击败了68.74%
+     * 击败了97.87%
      *
      * @param num1
      * @param num2
@@ -40,14 +40,12 @@ public class Multiply {
         char[] param1Array = param1.toCharArray();
         char[] param2Array = param2.toCharArray();
 
-        int indexI = param1.length() + param2.length() - 1;
 
-        for (int i = param1Array.length - 1; i >= 0; i--, indexI--) {
-            int indexJ = 0;
-            for (int j = param2Array.length - 1; j >= 0; j--, indexJ++) {
+        for (int i = param1Array.length - 1; i >= 0; i--) {
+            for (int j = param2Array.length - 1; j >= 0; j--) {
                 Integer temp = (param1Array[i] - '0') * (param2Array[j] - '0');
 
-                resultArray[indexI - indexJ] = resultArray[indexI - indexJ] + temp;
+                resultArray[ i+j+1] = resultArray[i+j+1] + temp;
             }
         }
 
