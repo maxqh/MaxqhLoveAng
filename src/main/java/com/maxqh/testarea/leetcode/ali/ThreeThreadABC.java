@@ -91,6 +91,6 @@ public class ThreeThreadABC {
      * 是否计时结束
      */
     public static boolean isOver(int count) {
-        return count > 10000;
+        return count > 100;
     }
 }
