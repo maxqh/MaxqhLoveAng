@@ -30,9 +30,9 @@ public class ReverseWords {
     public static Character SPACE = ' ';
 
     /**
-     * 通过
+     * 执行用时：16 ms 内存消耗：42.8 MB
      *
-     * 击败了9.4%
+     * 击败了15.2%
      *
      * @param s
      * @return
@@ -55,15 +55,13 @@ public class ReverseWords {
 
         while (index >= 0) {
             if (SPACE.equals(paramArray[index])) {
-                if (result.length() < 1){
-                    result = new StringBuffer();
-                    result.append(resolver(paramArray, --index));
-                    return result.toString();
+                if (result.length() < 1) {
+                    return resolver(paramArray, --index);
                 }
 
                 result.reverse();
                 result.append(SPACE);
-                result.append(resolver(paramArray, index));
+                result.append(resolver(paramArray, --index));
                 return result.toString();
             }
 
