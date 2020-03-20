@@ -17,14 +17,14 @@ import java.util.List;
  */
 public class RestoreIpAddresses {
     /**
-     * 击败83.75%
+     * 击败97.79%
      *
-     * 执行用时：3 ms 内存消耗：38.8 MB
+     * 执行用时：3 ms 内存消耗：38.4 MB
      * 
      * @param param
      * @return
      */
-    public List<String> restoreIpAddressesVoilence(String param) {
+    public static List<String> restoreIpAddressesVoilence(String param) {
         int length = param.length();
         if (length < 4) {
             return new ArrayList<String>();
@@ -32,12 +32,13 @@ public class RestoreIpAddresses {
 
         List<String> result = new ArrayList<>();
 
-        for (int i = 1; i < 4; i++) {
-            for (int j = 1; j < 4; j++) {
+        String[] resultTemp = new String[4];
+        for (int i = 1; (i < 4 && (length -i) >= 3); i++) {
+            for (int j = 1; j < 4 && (length -i -j) >= 2; j++) {
                 for (int k = 1; k < 4; k++) {
                     for (int m = 1; m < 4; m++) {
                         if ((i + j + k + m) == length) {
-                            String[] resultTemp = new String[4];
+
                             resultTemp[0] = param.substring(0, i);
                             resultTemp[1] = param.substring(i, i + j);
                             resultTemp[2] = param.substring(i + j, i + j + k);
@@ -74,10 +75,11 @@ public class RestoreIpAddresses {
         return result;
     }
 
-    public void main(String[] args) {
-        // String param = "25525511135";
+    public static void  main(String[] args) {
+        //String param = "25525511135";
         // String param = "192168012";
-        String param = "010010";
+        //String param = "010010";
+        String param = "0000";
         List<String> result = restoreIpAddressesVoilence(param);
 
         result.stream().forEach(item -> System.out.println(item));
