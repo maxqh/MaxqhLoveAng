@@ -55,7 +55,7 @@ public class Search {
         int middle = start + size / 2 + 1;
 
         if (nums[end] > nums[start]) {
-            // 连续递增数组
+            // 1. 连续递增数组
             if (target < nums[start] || target > nums[end]) {
                 return -1;
             }
@@ -71,6 +71,7 @@ public class Search {
             }
         }
 
+        // 2. 非连续递增数组
         int result = resolver(nums, start, middle - 1, target);
         if (result > -1) {
             return result;
