@@ -18,8 +18,7 @@ import java.util.Map;
  */
 public class MaxAreaOfIsland {
     /**
-     * 通过
-     * 执行用时：25 ms 内存消耗：41.9 MB
+     * 通过 执行用时：25 ms 内存消耗：41.9 MB
      *
      * 击败了no-one
      * 
@@ -94,8 +93,52 @@ public class MaxAreaOfIsland {
     }
 
     public static void main(String[] args) {
-        int[][] param = { { 1, 1, 0, 0, 0 }, { 1, 1, 0, 0, 0 }, { 0, 0, 0, 1, 1 }, { 0, 0, 0, 1, 1 } };
-        int result = maxAreaOfIsland(param);
+        // int[][] param = { { 1, 1, 0, 0, 0 }, { 1, 1, 0, 0, 0 }, { 0, 0, 0, 1, 1 }, {
+        // 0, 0, 0, 1, 1 } };
+        int[][] param = { { 1 } };
+        int result = maxAreaOfIslandOptimize(param);
         System.out.println(result);
+    }
+
+    /**
+     * 通过 执行用时：3 ms 内存消耗：40.2 MB
+     * 
+     * 击败了70.46%的用户
+     * 
+     * @param grid
+     * @return
+     */
+    public static int maxAreaOfIslandOptimize(int[][] grid) {
+        if (grid == null || grid.length < 1) {
+            return 0;
+        }
+
+        int result = 0;
+
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                if (grid[i][j] == 0) {
+                    continue;
+                }
+
+                result = Math.max(helper(grid, i, j), result);
+            }
+        }
+
+        return result;
+    }
+
+    private static int helper(int[][] grid, int i, int j) {
+        if (i >= grid.length || i < 0 || j >= grid[i].length || j < 0) {
+            return 0;
+        }
+
+        if (grid[i][j] < 1) {
+            return 0;
+        }
+
+        grid[i][j] = 0;
+
+        return 1 + helper(grid, i - 1, j) + helper(grid, i + 1, j) + helper(grid, i, j - 1) + helper(grid, i, j + 1);
     }
 }
