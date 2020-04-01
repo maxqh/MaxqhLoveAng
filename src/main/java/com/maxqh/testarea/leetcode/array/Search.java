@@ -42,7 +42,7 @@ public class Search {
 
     private int resolver(int[] nums, int start, int end, int target) {
         int size = end - start;
-        if (size <= 1) {
+        if (size <= 2) {
             for (int i = start; i <= end; i++) {
                 if (nums[i] == target) {
                     return i;
