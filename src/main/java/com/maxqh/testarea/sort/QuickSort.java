@@ -23,6 +23,37 @@ public class QuickSort {
         return param;
     }
 
+    public static void fastSort(int[] nums, int start, int end) {
+        if (end <= start){
+            return;
+        }
+
+
+        int index = start;
+        if (nums[index] < nums[end]) {
+            index++;
+        }
+
+        for (int i = index; i < end; i++) {
+            if (nums[i] < nums[end]) {
+                int temp = nums[index];
+                nums[index] = nums[i];
+                nums[i] = temp;
+
+                index++;
+            }
+        }
+
+        if (index < end) {
+            int temp = nums[end];
+            nums[end] = nums[index];
+            nums[index] = temp;
+        }
+
+        fastSort(nums, start, index - 1);
+        fastSort(nums, index + 1, end);
+    }
+
     /**
      * 执行用时 : 20 ms , 在所有 Java 提交中击败了 31.87% 的用户 内存消耗 : 44.3 MB , 在所有 Java 提交中击败了
      * 100.00% 的用户
