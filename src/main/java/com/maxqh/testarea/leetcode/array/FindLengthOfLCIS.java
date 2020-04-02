@@ -17,31 +17,44 @@ package com.maxqh.testarea.leetcode.array;
  * @create: 2020-04-02 10:36
  */
 public class FindLengthOfLCIS {
-    public int findLengthOfLCIS(int[] nums) {
-        return 0;
-    }
-
+    /**
+     * 36 / 36 个通过测试用例 状态：通过 执行用时：2 ms 内存消耗：40.6 MB
+     *
+     * 击败了52.71%的用户
+     *
+     * @param nums
+     * @return
+     */
     public static int findLengthOfLCISVoilence(int[] nums) {
-        if (nums == null || nums.length <= 1){
+        if (nums == null || nums.length <= 0) {
             return 0;
+        }
+
+        if (nums.length == 1) {
+            return 1;
         }
 
         int result = 0;
 
         int temp = 1;
         for (int i = 1; i < nums.length; i++) {
-            if (nums[i] > nums[i-1]){
-                temp ++;
+            if (nums[i] > nums[i - 1]) {
+                temp++;
             } else {
                 result = Math.max(result, temp);
+                temp = 1;
             }
         }
 
-        return result;
+        return Math.max(result, temp);
     }
 
     public static void main(String[] args) {
-        int [] param = {1,3,5,4,7};
+        int[] param = { 1, 3, 5, 4, 7 };
         System.out.println(findLengthOfLCISVoilence(param));
+    }
+
+    public int findLengthOfLCIS(int[] nums) {
+        return 0;
     }
 }
