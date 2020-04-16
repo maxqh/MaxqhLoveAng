@@ -66,7 +66,6 @@ public class HeapPriority<E> {
         System.out.println(param.remove(0));
         System.out.println(param.remove(0));
 
-
         param.add(321);
         param.add(6812);
         param.add(10);
@@ -104,7 +103,6 @@ public class HeapPriority<E> {
             return old;
         }
 
-
     }
 
     private E siftDown(int i, E param) {
@@ -121,7 +119,7 @@ public class HeapPriority<E> {
                 min = right;
                 minChild = (E) heapArray[right];
             }
-            if (comparable.compareTo(leftChild) <= 0) {
+            if (comparable.compareTo(minChild) <= 0) {
                 break;
             }
 
