@@ -3,6 +3,7 @@ package com.maxqh.testarea.leetcode.array;
 import com.maxqh.testarea.sort.QuickSortOptimise;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 
 /**
  * 
@@ -43,9 +44,11 @@ public class Merge {
     /**
      * 执行结果： 通过
      * 
-     * 显示详情 执行用时 : 7 ms , 在所有 Java 提交中击败了 86.79% 的用户 内存消耗 : 42.6 MB ,
+     * 显示详情
      * 
-     * 在所有 Java 提交中击败了 35.61% 的用户
+     * 执行用时 : 7 ms , 在所有 Java 提交中击败了 86.79% 的用户
+     * 
+     * 内存消耗 : 42.6 MB , 在所有 Java 提交中击败了 35.61% 的用户
      *
      * @param intervals
      * @return
@@ -86,5 +89,45 @@ public class Merge {
             System.out.println("x=" + item[0] + ",y=" + item[1]);
         }
 
+    }
+
+    /**
+     * 执行用时：5 ms 内存消耗：42.5 MB
+     * 
+     * @param intervals
+     * @return
+     */
+    public static int[][] mergeOptimize(int[][] intervals) {
+        LinkedList<int[]> list = new LinkedList<>();
+
+        if (intervals == null || intervals.length <= 1) {
+            return intervals;
+        }
+
+        QuickSortOptimise.quickSortDoubleArray(intervals);
+
+        int[] array = { intervals[0][0], intervals[0][1] };
+        list.addLast(array);
+
+        for (int i = 1; i < intervals.length; i++) {
+            int[] last = list.getLast();
+            if (last[1] < intervals[i][0]) {
+                int[] temp = { intervals[i][0], intervals[i][1] };
+                list.addLast(temp);
+                continue;
+            }
+
+            list.getLast()[1] = Math.max(list.getLast()[1], intervals[i][1]);
+            continue;
+        }
+
+        int[][] result = new int[list.size()][2];
+
+        int index = 0;
+        for (int[] item : list) {
+            result[index++] = item;
+        }
+
+        return result;
     }
 }
