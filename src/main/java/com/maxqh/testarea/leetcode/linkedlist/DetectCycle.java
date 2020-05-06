@@ -34,7 +34,48 @@ import java.util.HashMap;
  * @create: 2020-05-06 11:01
  */
 public class DetectCycle {
+    /**
+     * 击败了100%的用户
+     * 
+     * 16 / 16 个通过测试用例
+     * 
+     * 状态：通过 执行用时：0 ms
+     * 
+     * 内存消耗：39.8 MB
+     *
+     * @param head
+     * @return
+     */
     public ListNode detectCycle(ListNode head) {
+
+        if (head == null || head.next == null) {
+            return null;
+        }
+
+        ListNode fast = head.next.next;
+        ListNode slow = head.next;
+
+        while (fast != null && slow != null) {
+            if (fast == slow) {
+                slow = head;
+
+                while (slow != fast) {
+                    slow = slow.next;
+                    fast = fast.next;
+                }
+
+                return slow;
+            }
+
+            slow = slow.next;
+            fast = fast.next;
+            if (fast == null) {
+                return fast;
+            } else {
+                fast = fast.next;
+            }
+        }
+
         return null;
     }
 
