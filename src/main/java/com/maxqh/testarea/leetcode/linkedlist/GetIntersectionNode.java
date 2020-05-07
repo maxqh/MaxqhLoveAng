@@ -12,9 +12,10 @@ public class GetIntersectionNode {
     /**
      * TODO 效率有待提高
      *
-     * 执行用时 : 3 ms, 在Intersection of Two Linked Lists的Java提交中击败了31.43% 的用户 内存消耗
-     * : 48.4 MB, 在Intersection of Two Linked Lists的Java提交中击败了5.05% 的用户
+     * 执行用时 : 2 ms, 在Intersection of Two Linked Lists的Java提交中击败了39.55% 的用户
      * 
+     * 内存消耗 :48.4 MB, 在Intersection of Two Linked Lists的Java提交中击败了5.05% 的用户
+     *
      * @param headA
      * @param headB
      * @return
@@ -24,8 +25,15 @@ public class GetIntersectionNode {
             return null;
         }
 
-        int aLength = getLinkedListSize(headA);
-        int bLength = getLinkedListSize(headB);
+        ListNode endA = null;
+        ListNode endB = null;
+
+        int aLength = getLinkedListSize(headA, endA);
+        int bLength = getLinkedListSize(headB, endB);
+
+        if (endA != endB) {
+            return null;
+        }
 
         if (aLength > bLength) {
             return helper(aLength - bLength, headA, headB);
@@ -55,7 +63,7 @@ public class GetIntersectionNode {
         return null;
     }
 
-    protected int getLinkedListSize(ListNode head) {
+    protected int getLinkedListSize(ListNode head, ListNode end) {
         if (head == null) {
             return 0;
         }
@@ -66,6 +74,37 @@ public class GetIntersectionNode {
             temp = temp.next;
             i++;
         }
+
+        end = temp;
         return i;
+    }
+
+    /**
+     * 45 / 45 个通过测试用例
+     *
+     * 状态：通过 击败了99.97%的用户
+     *
+     * 执行用时：1 ms
+     *
+     * 内存消耗：42.3 MB
+     *
+     * @param headA
+     * @param headB
+     * @return
+     */
+    public ListNode getIntersectionNodeOptimise(ListNode headA, ListNode headB) {
+        if (headA == null || headB == null) {
+            return null;
+        }
+
+        ListNode tempA = headA;
+        ListNode tempB = headB;
+
+        while (tempA != tempB) {
+            tempA = ((tempA == null) ? headB : tempA.next);
+            tempB = ((tempB == null) ? headA : tempB.next);
+        }
+
+        return tempA;
     }
 }
