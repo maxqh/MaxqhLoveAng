@@ -89,6 +89,17 @@ public class ZigzagLevelOrder {
         return result;
     }
 
+    /**
+     * 优化
+     *
+     * @param root
+     * @return
+     */
+    public List<List<Integer>> zigzagLevelOrderOptimise(TreeNode root) {
+        // todo
+        return null;
+    }
+
     public static void main(String[] args) {
         List<List<Integer>> result = new ArrayList<>();
 
