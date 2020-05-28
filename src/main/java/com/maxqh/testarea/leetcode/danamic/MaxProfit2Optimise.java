@@ -48,25 +48,10 @@ public class MaxProfit2Optimise {
         }
 
         int[] dp = new int[prices.length];
-        Boolean isMin = Boolean.TRUE;
         for (int i = 1; i < prices.length; i++) {
 
             int minus = prices[i] - prices[i - 1];
             dp[i] = Math.max(dp[i - 1], dp[i - 1] + minus);
-            if (isMin) {
-                // 小数
-                if (minus > 0) {
-                    isMin = Boolean.FALSE;
-                }
-            } else {
-                // 大数
-                if (minus > 0) {
-                    isMin = Boolean.FALSE;
-                } else {
-                    isMin = Boolean.TRUE;
-                }
-            }
-
         }
 
         return dp[prices.length - 1];
