@@ -17,9 +17,21 @@ public class MaxSubArray {
      * 如果你已经实现复杂度为 O(n) 的解法，尝试使用更为精妙的分治法求解。
      */
 
+    /**
+     * 通过 击败了8.7%的用户
+     *
+     * 执行用时：3 ms 内存消耗：39.6 MB
+     * 
+     * @param nums
+     * @return
+     */
     public int maxSubArray(int[] nums) {
+        if (nums == null || nums.length < 1) {
+            return 0;
+        }
+
         Integer sum = 0;
-        Integer max = Integer.MIN_VALUE;
+        Integer max = nums[0];
 
         for (int i = 0; i < nums.length; i++) {
             if (sum > 0) {
@@ -28,9 +40,35 @@ public class MaxSubArray {
                 sum = nums[i];
             }
 
-            if (max < sum) {
-                max = sum;
+            max = Math.max(max, sum);
+        }
+        return max;
+    }
+
+    /**
+     * 通过 击败了95.01%的用户
+     *
+     * 执行用时：1 ms 内存消耗：39.8 MB
+     *
+     * @param nums
+     * @return
+     */
+    public int maxSubArrayOptimise(int[] nums) {
+        if (nums == null || nums.length < 1) {
+            return 0;
+        }
+
+        int sum = 0;
+        int max = nums[0];
+
+        for (int i = 0; i < nums.length; i++) {
+            if (sum > 0) {
+                sum = sum + nums[i];
+            } else {
+                sum = nums[i];
             }
+
+            max = Math.max(max, sum);
         }
         return max;
     }
