@@ -43,7 +43,33 @@ public class MaxSubArray2 {
         return result;
     }
 
+    /**
+     * 
+     * 通过，击败了95.03%的用户
+     * 
+     * 执行用时：1 ms 内存消耗：40 MB
+     * 
+     * @param nums
+     * @return
+     */
     public int maxSubArrayOptimise(int[] nums) {
-        return 0;
+        if (nums == null || nums.length < 1) {
+            return 0;
+        }
+
+        int max = nums[0];
+        int sum = nums[0];
+
+        for (int i = 1; i < nums.length; i++) {
+            if (sum > 0) {
+                sum += nums[i];
+            } else {
+                sum = nums[i];
+            }
+
+            max = Math.max(max, sum);
+        }
+
+        return max;
     }
 }
